@@ -1,4 +1,4 @@
-name = "Copy_Stremio_Library_to_MDB_Watchlist"
+name = "stremio-to-mdb"
 main = "src/index.js"
 compatibility_date = "2026-03-14"
 
