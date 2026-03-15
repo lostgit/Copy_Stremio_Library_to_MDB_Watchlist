@@ -1,0 +1,18 @@
+# Cloudflare specific
+.wrangler/
+.eslintcache
+
+# Dependency folders
+node_modules/
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+# VS Code / Codespaces
+.vscode/
+
+# Build and environment files
+dist/
+*.log
+.env

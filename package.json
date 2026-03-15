@@ -1,0 +1,16 @@
+{
+  "name": "stremio-to-mdb",
+  "version": "0.1.0",
+  "description": "Copy Stremio Copy Stremio Library to MDB Watchlist",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
