@@ -1,6 +1,5 @@
 const Parser = {
   process(stremioExport) {
-    // Use modern syntax: nullish coalescing and optional chaining
     const media = stremioExport?.library ?? (Array.isArray(stremioExport) ? stremioExport : []);
 
     if (!media?.length) {
@@ -74,10 +73,12 @@ function getHtml() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Stremio Library to MDB</title>
+    <title>Stremio to MDB</title>
     <style>
         body { font-family: ui-sans-serif, system-ui; background: #f8fafc; padding: 20px; color: #1e293b; }
         .card { background: white; border-radius: 12px; padding: 32px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 900px; margin: auto; border: 1px solid #e2e8f0; }
+        .header-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+        .github-link { text-decoration: none; color: #2563eb; font-weight: 600; font-size: 14px; }
         .tabs { display: flex; gap: 10px; margin-bottom: 20px; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; }
         .tab-btn { padding: 10px 20px; cursor: pointer; border: 1px solid #cbd5e1; background: white; border-radius: 6px; }
         .tab-btn.active { background: #334155; color: white; border-color: #334155; }
@@ -90,11 +91,16 @@ function getHtml() {
         .btn-blue { background: #2563eb; }
         .btn:disabled { background: #94a3b8; }
         h3 { font-size: 11px; text-transform: uppercase; color: #64748b; margin: 20px 0 8px 0; }
+        .hint { font-size: 12px; color: #64748b; margin-top: 5px; }
     </style>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8E%AC%3C%2Ftext%3E%3C%2Fsvg%3E">
 </head>
 <body>
     <div class="card">
-        <h2>Add Stremio Library to MDB</h2>
+        <div class="header-row">
+            <h2>Add Stremio Library to MDB Watchlist</h2>
+            <a href="https://github.com/lostgit/stremio-lib-to-mdb-watchlist" class="github-link" target="_blank">GitHub</a>
+        </div>
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab(event, 'stremio')">Stremio Library</button>
             <div class="arrow">&rArr;</div>
@@ -102,9 +108,11 @@ function getHtml() {
         </div>
 
         <div id="stremio" class="tab-content active">
+            <h3>Upload json file from [<a href="https://stremthru.13377001.xyz/stremio/sidekick/" target="_">Stremthru Sidekick Library Backup</a>]
+             or from [Stremio Account Export]. The library backup file is better.</h3>
             <input type="file" id="fileInput">
             <button class="btn btn-green" id="processBtn">Upload Stremio Json</button>
-            <h3>Parsed movies and shows to add to MDB. Review then enter your API Key on the MDB Watchlist tab</h3>
+            <h3>Parsed movies & shows to add to MDB Watchlist. Review after upload, then click [MDB Watchlist]</h3>
             <textarea id="mdbListJson"></textarea>
             <h3>Missing or invalid TMDB/IMDB ID</h3>
             <textarea id="notProcessed" readonly></textarea>
@@ -112,6 +120,7 @@ function getHtml() {
 
         <div id="mdb" class="tab-content">
             <input type="password" id="apiKey" placeholder="MDBList API Key" style="padding:10px; border-radius:6px; border:1px solid #cbd5e1; width: 100%; box-sizing:border-box;">
+            <div class="hint">The key is passed directly to MDB and never saved.</div>
             <button class="btn btn-blue" id="syncBtn" style="margin-top:10px; width:100%">Add to MDB Watchlist</button>
             <div id="progress" style="margin-top:10px; font-weight:bold;"></div>
             <div id="results" style="display:none">
